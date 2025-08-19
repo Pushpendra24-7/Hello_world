@@ -31,6 +31,9 @@ pipeline {
 
         stage('Run Docker Container') {
             steps {
+                // Remove old container if it exists
+                sh "docker rm -f $CONTAINER_NAME || true"
+                // Start new container
                 sh "docker run -d --name $CONTAINER_NAME -p 3000:3000 $DOCKER_IMAGE"
             }
         }
