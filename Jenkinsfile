@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    triggers {
+        // Trigger build on push to main branch using GitHub webhook
+        githubPush()
+    }
     environment {
         DOCKER_IMAGE = "express-hello-world"
         CONTAINER_NAME = "express_hello_world_app"
